@@ -1,0 +1,29 @@
+{
+  "name": "chantry",
+  "version": "0.0.2",
+  "scripts": {
+    "dev": "cross-env IS_DEV=TRUE nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chantry/website.git"
+  },
+  "homepage": "https://github.com/chantry/website#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.31",
+    "@fortawesome/free-brands-svg-icons": "^5.15.0",
+    "@fortawesome/free-regular-svg-icons": "^5.15.0",
+    "@fortawesome/free-solid-svg-icons": "^5.15.0",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "cross-env": "^7.0.2",
+    "nuxt": "^2.14.6",
+    "nuxt-matomo": "^1.2.3"
+  },
+  "devDependencies": {}
+}
