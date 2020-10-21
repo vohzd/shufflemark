@@ -24,7 +24,7 @@ module.exports = {
   },
   axios: {
     baseURL: "/",
-    proxyHeaders: false,
+    proxyHeaders: true,
     credentials: true
   },
   sitemap: {
