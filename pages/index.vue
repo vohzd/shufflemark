@@ -18,16 +18,26 @@
           </div>
           <div class=" ml">
             <strong class="mb">Or upload your bookmarks!</strong>
-            <input type="file" name="" value="Select .html file">
+            <input type="file" name="" value="Select .html file" @change="parseFile">
           </div>
 
 
         </div>
         <div class="row">
           <h4 class="mb">Newly added items</h4>
-          <div v-for="site in sites">
-            <h5>{{ site.url }}</h5>
-            <img :src="site.screenshot" alt="" width="256px">
+
+          <div v-for="site in sites" class="bookmarks-grid">
+            <div v-if="site" class="flex-grid bookmark-item mb">
+              <div class="flex-grid-item">
+                <img :src="site.iconuri" alt="" width="32px">
+              </div>
+              <div class="flex-grid-item">
+                <h4>{{ site.title }}</h4>
+                <a :href="site.uri" class="tiny">{{ site.uri }}</a>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
@@ -40,6 +50,7 @@
 <script>
 
 import FormButton from "~/components/form/FormButton.vue";
+
 
 export default {
   components: {
@@ -67,6 +78,32 @@ export default {
         }
 
       }
+    },
+    async parseFile($event){
+      const file = $event.target.files[0];
+      const fileReader = new FileReader();
+
+      fileReader.readAsText(file, "UTF-8");
+      fileReader.onload = async ($event) => {
+        const json = JSON.parse($event.target.result);
+        this.sites = json.children.flatMap((v) => {
+          if (!v.children) return v;
+          return v.children.flatMap((node) => {
+            return node.children ? node.children : node
+          });
+        });
+      }
+
+      /*
+      console.log(parseBookmarks);
+      try {
+        const wat = await parseBookmarks(file);
+        console.log("qwd");
+      }
+      catch (e){
+        console.log(e);
+      }
+*/
     }
   }
 }
@@ -80,6 +117,19 @@ export default {
     grid-column-gap: 32px;
   }
 
+  .flex-grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: 8px;
+  }
+
+  .bookmarks-item {
+
+  }
+
+  .bookmarks-item:nth-child(odd) {
+    background: rgba(0,0,0,0.1);
+  }
   ul {
     margin-left: 16px;
   }
