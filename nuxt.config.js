@@ -20,7 +20,7 @@ module.exports = {
   },
   loading: { color: '#b56d82' },
   env: {
-    //SERVER_ENDPOINT: process.env.SERVER_ENDPOINT ? process.env.SERVER_ENDPOINT : "http://localhost:1337"
+    AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT ? process.env.AUTH_SERVER_ENDPOINT : "http://localhost:1080"
   },
   axios: {
     baseURL: "/",
@@ -34,10 +34,13 @@ module.exports = {
   build: {
     optimizeCSS: true
   },
+  serverMiddleware: [
+    { path: "/api", handler: "~/api/index.js" }
+  ],
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
-    ["nuxt-matomo", { matomoUrl: "https://stats.apps.epitrade.io/", siteId: 2 }]
+    ["nuxt-matomo", { matomoUrl: "https://stats.apps.epitrade.io/", siteId: 6 }]
   ],
   plugins: [
     "~/plugins/fontawesome.js"

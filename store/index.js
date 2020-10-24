@@ -17,6 +17,8 @@ import getters 								from "./rootGetters.js";
  */
 
 import Account 						  	from "./Account/index.js";
+import Notification 					from "./Notification/index.js";
+import Website 								from "./Website/index.js";
 
 Vue.use(Vuex);
 
@@ -25,7 +27,9 @@ export default () => {
 		actions,
 		getters,
 		modules: {
-			Account
+			Account,
+			Notification,
+			Website
 		},
 		mutations: {
 			...myMutations

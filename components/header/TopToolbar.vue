@@ -1,9 +1,8 @@
 <template lang="html">
   <header class="main-header">
-    <!--
     <nuxt-link to="/">
-      <img src="~/assets/img/logo4.png" class="main-logo" />
-    </nuxt-link>-->
+      chantry.io
+    </nuxt-link>
     <account-icon class="absolute-top-right"></account-icon>
   </header>
 </template>

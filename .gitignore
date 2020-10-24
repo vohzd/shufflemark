@@ -8,5 +8,7 @@ access.json
 # Nuxt build
 .nuxt
 
+mongo.js
+
 # Nuxt generate
 dist

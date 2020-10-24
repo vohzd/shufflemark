@@ -2,18 +2,31 @@
   <section>
     <top-toolbar></top-toolbar>
     <nuxt class="main-view" />
+    <notifications-wrapper></notifications-wrapper>
+    <footer class="site-footer">boring footer stuff</footer>
   </section>
 </template>
 
 <script>
 import TopToolbar from "~/components/header/TopToolbar.vue";
+import NotificationsWrapper from "~/components/notification/NotificationsWrapper.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
-    "top-toolbar": TopToolbar
+    TopToolbar,
+    NotificationsWrapper
   },
+  methods: {
+    ...mapActions([
+      "checkAuthState",
+    ])
+  },
+  mounted(){
+    this.checkAuthState();
+  }
+
 };
 </script>
 
@@ -905,6 +918,12 @@ export default {
     color: white;
   }
 
+  label {
+    width: 100%;
+    font-size: 16px;
+    display: inline-block;
+  }
+
   .button-container {
     font-size: 0px;
   }
@@ -933,60 +952,6 @@ export default {
     cursor: pointer;
   }
 
-
-
-  .cta-button {
-    background: var(--button);
-    position: relative;
-    transition: 0.2s all;
-    transition-delay: 0.2s;
-
-  }
-
-  .cta-button:hover:not(.secondary-button):not(:disabled) {
-    cursor: pointer;
-    transform: scale(1);
-    color: var(--link);
-    padding-right: 48px;
-    background-image: linear-gradient(45deg, var(--button) 25%, var(--button-lighter) 25%, var(--button-lighter) 50%, var(--button) 50%, var(--button) 75%, var(--button-lighter) 75%, var(--button-lighter) 100%) !important;
-    background-size: 22.63px 22.63px ;
-    animation: button-animated-bg 5s infinite linear;
-  }
-
-
-  .button-hidden-icon {
-    top: -8px;
-    right: 22px;
-    font-size: 12px;
-    position: absolute;
-    background: rgba(255,255,255,1);
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    text-align: center;
-    line-height: 26px;
-    color: #523a18;
-  }
-
-  .cta-button:not(.secondary-button):not(:disabled) .button-hidden-icon {
-    transition: 0.2s all;
-    transition-delay: 0.1s;
-    transition-timing-function: ease-in-out;
-    opacity: 0;
-  }
-
-  .cta-button:hover:not(.secondary-button):not(:disabled) .button-hidden-icon {
-    top: 16px;
-    right: 16px;
-    opacity: 1;
-  }
-
-
-  @keyframes button-animated-bg {
-      0%   {background-position: 0px 0px;}
-      100% {background-position: 128px 0px;}
-  }
-
   .no-shadow {
     box-shadow: none;
   }
@@ -1001,12 +966,6 @@ export default {
 
   .text-center {
     text-align: center;
-  }
-
-  label {
-    width: 100%;
-    font-size: 16px;
-    display: inline-block;
   }
 
   .right {
@@ -1066,5 +1025,24 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
+  }
+
+  .dashed-border {
+    border: 1px dashed rgba(0,0,0,0.3);
+    border-radius: 2px;
+  }
+
+  .dashed-bg {
+    background-image: linear-gradient(45deg, #ffffff 25%, #fafafa 25%, #fafafa 50%, #ffffff 50%, #ffffff 75%, #fafafa 75%, #fafafa 100%) !important;
+    background-size: 22.63px 22.63px ;
+  }
+
+  .site-footer {
+    background: black;
+    color: white;
+    width: 100%;
+    height: 128px;
+    bottom: -128px;
+    position: absolute;
   }
 </style>

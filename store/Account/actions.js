@@ -3,85 +3,53 @@ import state 												from "./state.js";
 export default {
   async checkAuthState({ commit, dispatch }){
     try {
-      let req = await this.$axios.get(`${this.getters.serverEndpoint}/checkAuthState`, { withCredentials: true });
-      if (req.status === 200){
-        dispatch("setUserMeta", req.data.user);
-      }
+      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/check-cookie`, {}, { withCredentials: true });
+      commit("SET_USER", data);
     }
     catch (e){
-      if (e.response.status === 401){
-        dispatch("setUserMeta", false);
-      }
+      dispatch("setNotification", e.response.data.reason);
     }
   },
-  async checkUserExists({ commit, dispatch }, email){
+  async checkAccountExists({ commit, dispatch }, email){
     try {
-      return await this.$axios.get(`${this.getters.serverEndpoint}/user/${email}`);
-    }
-    catch {
-      return "WRONG_EMAIL_FORMAT";
-    }
-  },
-  async getUser({ }, id){
-    try {
-      const { data } = await this.$axios.get(`${this.getters.serverEndpoint}/users?_id=${id}`);
-      return data;
+      return await this.$axios.get(`${this.getters.authServerEndpoint}/account/${email}?property=chantry`);
     }
     catch (e){
-      dispatch("setNotification", "An error occurred");
-      throw new Error(e);
+      dispatch("setNotification", e.response.data.reason);
+    }
+  },
+  async createAccount({ commit, dispatch }, payload){
+    try {
+      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/?property=chantry`, {
+        email: payload.email,
+        password: payload.password
+      });
+      commit("SET_USER", data);
+    }
+    catch (e){
+      dispatch("setNotification", e.response.data.reason);
     }
   },
   async login({ commit, dispatch }, payload){
     try {
-      let req = await this.$axios.post(`${this.getters.serverEndpoint}/login`, { email: payload.email, password: payload.password }, { withCredentials: true });
-      if (req.status === 401){
-        dispatch("setNotification", "Wrong Password");
-      }
-      else if (req.status === 200){
-        console.log("you are here");
-        console.log(req.data);
-        dispatch("setUserMeta", req.data);
-        if (req.data.isAdmin){
-          this.$router.push("/admin")
-        }
-      }
-      commit("SET_IS_LOADING", false);
+      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/login`, {
+        email: payload.email,
+        password: payload.password
+      }, { withCredentials: true });
+      commit("SET_USER", data);
     }
     catch (e){
-      if (e.response.status === 401){
-        dispatch("setNotification", "Wrong Password");
-      }
+      dispatch("setNotification", e.response.data.reason);
     }
   },
   async logout({ commit, dispatch }, needsRedirect){
     try {
-      let req = await this.$axios.post(`${this.getters.serverEndpoint}/logout`, {}, { withCredentials: true });
-      if (req.status === 200){
-        dispatch("setUserMeta", null);
-      }
-      if (needsRedirect){
-        this.$router.push("/");
-      }
+      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/logout`, {}, { withCredentials: true });
+      commit("SET_USER", null);
+      if (needsRedirect){ this.$router.push("/") }
     }
     catch (e){
-      dispatch("setNotification", e.response.message);
+      dispatch("setNotification", e.response.data.reason);
     }
-  },
-  async requestPasswordReset({ commit, dispatch }, email){
-    try { await this.$axios.post(`${this.getters.serverEndpoint}/request-password-reset`, { email }) }
-    catch (e) { console.log(e) }
-  },
-  async register({ commit, dispatch }, payload){
-    try {
-      await this.$axios.post(`${this.getters.serverEndpoint}/register`, { "email": payload.email, "password": payload.password, "name": payload.name });
-      await dispatch("login", { "email": payload.email, "password": payload.password });
-    }
-    catch (e){
-      console.log(e)
-    }
-  },
-  setUserMeta({ commit }, meta){
-    commit("SET_USER_META", meta);
   }
 }

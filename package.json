@@ -21,8 +21,11 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.2.2",
     "@nuxtjs/sitemap": "^2.4.0",
-    "bookmark-parser": "^0.1.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
     "nuxt": "^2.14.7",
     "nuxt-matomo": "^1.2.3"
   },

@@ -1,5 +1,5 @@
 import state from "./rootState.js";
 
 export default {
-  serverEndpoint: (state) => process.env.SERVER_ENDPOINT
+  authServerEndpoint: (state) => process.env.AUTH_SERVER_ENDPOINT
 }
