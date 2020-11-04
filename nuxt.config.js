@@ -39,8 +39,7 @@ module.exports = {
   ],
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/pwa",
-    ["nuxt-matomo", { matomoUrl: "https://stats.apps.epitrade.io/", siteId: 6 }]
+    "@nuxtjs/pwa"
   ],
   plugins: [
     "~/plugins/fontawesome.js"

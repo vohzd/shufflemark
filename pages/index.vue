@@ -12,30 +12,18 @@
 
         <div class="row mtx mbx">
           <nuxt-link to="/account">
-            <button>SIGN UP</button>
+            <button>ACCOUNT</button>
           </nuxt-link>
         </div>
 
-        <p>some fluff here</p>
         </div>
         <div class="row">
           <h4 class="mb">Newly added items</h4>
 
           <div v-for="site in websites" class="bookmarks-grid">
             <div v-if="site" class="flex-grid bookmark-item mb">
-              <!--
-              <div class="flex-grid-item">
-                <img :src="site.iconuri" alt="" width="32px">
-              </div>
-              <div class="flex-grid-item">
-                <h4>{{ site.title }}</h4>
-                <a :href="site.uri" class="tiny">{{ site.uri }}</a>
-              </div>
-            </div>-->
-            {{ site }}
-
-
-          </div>
+              {{ site.url }}
+            </div>
         </div>
 
       </div>

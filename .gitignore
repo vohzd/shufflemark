@@ -9,6 +9,7 @@ access.json
 .nuxt
 
 mongo.js
+jwtSecret.js
 
 # Nuxt generate
 dist

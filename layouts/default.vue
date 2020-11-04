@@ -1,9 +1,12 @@
 <template>
   <section>
     <top-toolbar></top-toolbar>
-    <nuxt class="main-view" />
-    <notifications-wrapper></notifications-wrapper>
-    <footer class="site-footer">boring footer stuff</footer>
+    <div class="main-wrapper">
+      <nuxt />
+      <notifications-wrapper></notifications-wrapper>
+      <footer class="site-footer">boring footer stuff</footer>
+    </div>
+
   </section>
 </template>
 
@@ -87,6 +90,8 @@ export default {
       outline: 0;
   }
 
+
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -94,14 +99,20 @@ export default {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
     background: var(--background);
     color: var(--text);
-    height: calc(100vh - 64px);
-    top: 64px;
     font-size: 18px;
     text-shadow: 1px 1px rgba(0,0,0,0.05);
     line-height: 1.5em;
     position: relative;
+    padding-bottom: 64px;
+  }
+
+  .main-wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
   }
 
   .vc-chrome {
