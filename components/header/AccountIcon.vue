@@ -20,8 +20,9 @@ import { mapGetters } from "vuex";
 
   .account-icon {
     display: inline-block;
-    width: 32px;
-    top: 4px;
+    width: 48px;
+    margin-top: 4px;
+    z-index: 9999;
   }
 
   .account-icon svg {

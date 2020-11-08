@@ -5,7 +5,8 @@ export default {
     console.log("called");
     try {
       const { data } = await this.$axios.post(`/api/website`, {
-        url: payload.url
+        url: payload.url,
+        //addedBy: get server to parse cookie here 
       });
       console.log(data);
     }

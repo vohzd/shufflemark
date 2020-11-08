@@ -1,11 +1,5 @@
 <template lang="html">
   <div class="">
-
-    <div class="row text-center">
-      <nuxt-link to="/surf" class="mt mb">
-        <button>SURF!</button>
-      </nuxt-link>
-    </div>
     <div v-if="selectedSite">
       <iframe :src="selectedSite.url" class="row" width="100%" height="800px"></iframe>
     </div>
