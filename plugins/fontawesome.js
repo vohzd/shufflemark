@@ -7,6 +7,7 @@ import {
   faBackward,
   faBroadcastTower,
   faBold,
+  faBookmark,
   faMinusCircle,
   faPlayCircle,
   faFileAudio,
@@ -55,6 +56,7 @@ import {
 import {
   faFacebook,
   faInstagram,
+  faTwitter,
   faYoutube
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -71,6 +73,8 @@ library.add(
   faPalette,
   faYoutube,
   faBold,
+  faBookmark,
+  faTwitter,
   faUserCircle,
   faFileAudio,
   faExclamationTriangle,

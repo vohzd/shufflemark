@@ -4,18 +4,6 @@
 
       <div class="row">
 
-        <div class="row mtx mbx">
-          <nuxt-link to="/surf">
-            <button>SURF!</button>
-          </nuxt-link>
-        </div>
-
-        <div class="row mtx mbx">
-          <nuxt-link to="/account">
-            <button>ACCOUNT</button>
-          </nuxt-link>
-        </div>
-
         </div>
         <div class="row">
           <h4 class="mb">Newly added items</h4>

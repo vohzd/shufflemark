@@ -1,25 +1,27 @@
 <template>
   <section>
-    <top-toolbar></top-toolbar>
+    <main-toolbar></main-toolbar>
     <div class="main-wrapper">
       <nuxt />
       <notifications-wrapper></notifications-wrapper>
-      <footer class="site-footer">boring footer stuff</footer>
+      <site-footer></site-footer>
     </div>
 
   </section>
 </template>
 
 <script>
-import TopToolbar from "~/components/header/TopToolbar.vue";
+import MainToolbar from "~/components/header/MainToolbar.vue";
 import NotificationsWrapper from "~/components/notification/NotificationsWrapper.vue";
+import SiteFooter from "~/components/footer/Footer.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
-    TopToolbar,
-    NotificationsWrapper
+    MainToolbar,
+    NotificationsWrapper,
+    SiteFooter
   },
   methods: {
     ...mapActions([
@@ -56,6 +58,21 @@ export default {
       font-weight: normal;
       font-style: normal;
   }
+
+  @font-face {
+      font-family: "firacode";
+      src: url("~assets/fonts/firacode.ttf");
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: "firamono";
+      src: url("~assets/fonts/firamono.ttf");
+      font-weight: normal;
+      font-style: normal;
+  }
+
 
   :root {
       --main: #000;
@@ -95,28 +112,28 @@ export default {
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: "noto";
+    font-family: "firacode";
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: var(--background);
     color: var(--text);
     font-size: 18px;
     text-shadow: 1px 1px rgba(0,0,0,0.05);
     line-height: 1.5em;
     position: relative;
-    padding-bottom: 64px;
   }
 
   .main-wrapper {
-    min-height: 100%;
+    padding-top: 64px;
+    min-height: calc(100vh + 128px);
     display: grid;
     grid-template-rows: 1fr auto;
   }
 
   .vc-chrome {
-    font-family: "noto" !important;
+    font-family: "firacode" !important;
   }
 
   a {
@@ -863,7 +880,7 @@ export default {
     border: 0;
     outline: 0;
     width: 100%;
-    font-family: "noto";
+    font-family: "firacode";
     background: rgba(0,0,0,0.01);
     border: 1px solid rgba(0,0,0,0.07);
     font-size: 16px;
@@ -902,7 +919,7 @@ export default {
     padding: 16px;
     border: 0;
     outline: 0;
-    font-family: "noto";
+    font-family: "firacode";
     font-weight: normal;
     background: linear-gradient(var(--button) 0%, var(--button-lighter) 100% );
     border:  1px solid rgba(0,0,0,0.2);
