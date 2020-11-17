@@ -20,7 +20,7 @@ module.exports = {
   },
   loading: { color: '#b56d82' },
   env: {
-    AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT ? process.env.AUTH_SERVER_ENDPOINT : "http://localhost:1080"
+    AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT ? process.env.AUTH_SERVER_ENDPOINT : "https://localhost:1080"
   },
   axios: {
     baseURL: "/",
