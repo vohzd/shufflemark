@@ -12,7 +12,7 @@ export default {
   },
   async checkAccountExists({ commit, dispatch }, email){
     try {
-      return await this.$axios.get(`${this.getters.authServerEndpoint}/account/${email}?property=chantry`);
+      return await this.$axios.get(`${this.getters.authServerEndpoint}/account?property=chantry&email=${email}`);
     }
     catch (e){
       dispatch("setNotification", e.response.data.reason);

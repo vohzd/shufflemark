@@ -1073,4 +1073,10 @@ export default {
     bottom: -128px;
     position: absolute;
   }
+
+  @media (max-width: 1300px){
+    .center-container {
+      width: 30%;
+    }
+  }
 </style>

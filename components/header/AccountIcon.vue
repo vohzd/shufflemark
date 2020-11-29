@@ -22,7 +22,6 @@ import { mapGetters } from "vuex";
     display: inline-block;
     width: 48px;
     margin-top: 4px;
-    z-index: 9999;
   }
 
   .account-icon svg {

@@ -18,8 +18,10 @@ router.get("/websites", async (req, res, next) => {
 });
 
 router.post("/website", async (req, res) => {
+  console.log("creating the website!!!!");
+  console.log(req.body);
   try {
-    await createWebsite(req.body);
+    await createWebsite(req.body.url);
     res.send({
       "success": true
     });

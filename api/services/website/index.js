@@ -2,7 +2,7 @@ const WebsiteModel                           = require("../../models/website.js"
 
 async function createWebsite(payload){
   let Website = new WebsiteModel({
-    ...payload
+    url: payload.url
   });
   return await Website.save();
 }
