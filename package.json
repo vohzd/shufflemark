@@ -2,7 +2,7 @@
   "name": "chantry",
   "version": "0.0.4",
   "scripts": {
-    "dev": "cross-env IS_DEV=TRUE nuxt",
+    "dev": "cross-env IS_DEV=TRUE PORT=1440 NODE_TLS_REJECT_UNAUTHORIZED=0 AUTH_SERVER_ENDPOINT=https://localhost:1080 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"

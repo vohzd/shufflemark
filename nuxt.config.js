@@ -1,4 +1,18 @@
-module.exports = {
+import path from "path";
+import fs from "fs";
+
+export default {
+  axios: {
+    baseURL: "/",
+    proxyHeaders: true,
+    credentials: true
+  },
+  build: {
+    optimizeCSS: true
+  },
+  env: {
+    AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT || "https://localhost:1080",
+  },
   head: {
     title: "chantry",
     meta: [
@@ -19,29 +33,25 @@ module.exports = {
     ]
   },
   loading: { color: '#b56d82' },
-  env: {
-    AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT ? process.env.AUTH_SERVER_ENDPOINT : "https://localhost:1080"
-  },
-  axios: {
-    baseURL: "/",
-    proxyHeaders: true,
-    credentials: true
-  },
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
+    "@nuxtjs/sitemap"
+  ],
+  plugins: [
+    "~/plugins/fontawesome.js"
+  ],
   sitemap: {
     hostname: "https://chantry.io",
     gzip: true
   },
-  build: {
-    optimizeCSS: true
-  },
   serverMiddleware: [
     { path: "/api", handler: "~/api/index.js" }
   ],
-  modules: [
-    "@nuxtjs/axios",
-    "@nuxtjs/pwa"
-  ],
-  plugins: [
-    "~/plugins/fontawesome.js"
-  ]
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, "./api/config/keys/ssl/server.key")),
+      cert: fs.readFileSync(path.resolve(__dirname, "./api/config/keys/ssl/server.cert"))
+    }
+  }
 }
