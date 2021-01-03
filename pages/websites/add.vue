@@ -21,19 +21,24 @@ export default {
   data(){
     return {
       buttonText: "ADD!",
-      url: "https://example.com"
+      url: "https://bbc.com"
     }
   },
   methods: {
     ...mapActions([
-      "createWebsite"
+      "addWebsite"
     ]),
     async handleNewSite(){
-      this.buttonText = "Generating!";
-      const { data } = await this.createWebsite({
-        url: this.url
-      });
-      console.log(data);
+      this.buttonText = "Adding!";
+      try {
+        const { data } = await this.addWebsite({
+          url: this.url.replace(/(^\w+:|^)\/\//, "https://")
+        });
+        console.log(data);
+      }
+      catch (e){
+        console.log(e);
+      }
       this.$router.push("/websites")
     }
   }

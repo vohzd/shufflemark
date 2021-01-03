@@ -1,7 +1,7 @@
 import state 												from "./state.js";
 
 export default {
-  async createWebsite({ commit, dispatch }, payload){
+  async addWebsite({ commit, dispatch }, payload){
     try {
       const { data } = await this.$axios.post(`/api/website`, {
         url: payload.url,

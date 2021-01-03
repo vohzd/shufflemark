@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      "createWebsite"
+      "addWebsite"
     ]),
     async parseFile($event){
       const file = $event.target.files[0];

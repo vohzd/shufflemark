@@ -8,9 +8,11 @@
         <div class="row">
           <h4 class="mb">Newly added items</h4>
 
+
           <div v-for="site in websites" class="bookmarks-grid">
             <div v-if="site" class="flex-grid bookmark-item mb">
-              {{ site.url }}
+              <img :src="`/screenshots/${site.screenshotFilename}`" width="256px" >
+              <h5><a :href="site.url">{{ site.url }}</a></h5>
             </div>
         </div>
 

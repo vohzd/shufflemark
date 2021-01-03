@@ -2,12 +2,14 @@
   <div class="center-container ptx ">
     <div class="row pad">
       <h1>Welcome</h1>
-      <code>{{ user }}</code>
     </div>
-
     <div class="row mt mb">
-      <nuxt-link to="/websites/add">Add a website manually</nuxt-link>
-      <nuxt-link to="/websites/upload">Upload a shitton from a file</nuxt-link>
+      <nuxt-link to="/websites/add">
+        <button class="secondary-button">Add a website manually</button>
+      </nuxt-link>
+      <nuxt-link to="/websites/upload">
+        <button class="secondary-button">Upload a shitton from a file</button>
+      </nuxt-link>
     </div>
     <div class="row mt mb pad">
       <button class="secondary-button" @click="handleLogout">Log Out</button>
@@ -34,7 +36,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      "createWebsite",
+      "addWebsite",
       "logout"
     ]),
     handleDeleteAccount(){
