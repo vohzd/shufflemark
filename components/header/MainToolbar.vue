@@ -1,22 +1,10 @@
 <template lang="html">
   <header class="main-toolbar">
-    <nuxt-link to="/" class="main-logo">
-      <site-logo></site-logo>
-    </nuxt-link>
+    <nuxt-link to="/" class="nohover"><site-logo></site-logo></nuxt-link>
     <div class="main-ctas pad">
       <nuxt-link to="/surf" class="row ">
         <button >SURF!</button>
       </nuxt-link>
-
-      <!--
-      <div class=" main-cta-socials">
-        <div class="div">
-          <font-awesome-icon :icon="['fas', 'bookmark']"></font-awesome-icon>
-        </div>
-        <div class="">
-          <font-awesome-icon :icon="['fab', 'twitter']"></font-awesome-icon>
-        </div>
-      </div>-->
     </div>
     <account-icon class="absolute-top-right"></account-icon>
   </header>
@@ -48,25 +36,13 @@ export default {
     z-index: 6;
   }
 
-  .main-logo img{
-    margin-top: 2px;
-    width: 300px;
-    border-bottom-right-radius: 4px;
-    z-index: 2;
-    position: relative;
-  }
-
-  .main-logo:hover {
-    opacity: 1 !important;
-  }
-
   .main-ctas {
-    width: 300px;
+    width: 156px;
     background: #f1f1f1;
     display: inline-block;
     position: absolute;
     left: 0;
-    top: 138px;
+    top: 112px;
     z-index: 1;
     border-bottom-right-radius: 4px;
   }
@@ -76,11 +52,6 @@ export default {
     text-align: center;
   }
 
-  .main-cta-socials div {
-    font-size: 12px;
-    display: inline-block;
-    color: var(--link)
-  }
 
 
 </style>

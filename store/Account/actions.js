@@ -3,7 +3,9 @@ import state 												from "./state.js";
 export default {
   async checkAuthState({ commit, dispatch }){
     try {
-      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/check-cookie`, {}, { withCredentials: true });
+      console.log("action: checkAuthState");
+      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/check-cookie`, {}, { withCredentials: true });
+      console.log(data);
       commit("SET_USER", data);
     }
     catch (e){
@@ -12,7 +14,7 @@ export default {
   },
   async checkAccountExists({ commit, dispatch }, email){
     try {
-      return await this.$axios.get(`${this.getters.authServerEndpoint}/account?property=chantry&email=${email}`);
+      return await this.$axios.get(`${this.getters.authServerEndpoint}/api/account?email=${email}&property=epitrade`);
     }
     catch (e){
       dispatch("setNotification", e.response.data.reason);
@@ -20,7 +22,7 @@ export default {
   },
   async createAccount({ commit, dispatch }, payload){
     try {
-      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/?property=chantry`, {
+      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/?property=epitrade`, {
         email: payload.email,
         password: payload.password
       });
@@ -30,9 +32,18 @@ export default {
       dispatch("setNotification", e.response.data.reason);
     }
   },
+  async deleteAccount({ commit, dispatch }){
+    try {
+      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/delete?property=epitrade`, {}, { withCredentials: true });
+      commit("SET_USER", null);
+    }
+    catch (e){
+      dispatch("setNotification", e.response.data.reason);
+    }
+  },
   async login({ commit, dispatch }, payload){
     try {
-      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/login`, {
+      const { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/login`, {
         email: payload.email,
         password: payload.password
       }, { withCredentials: true });
@@ -44,7 +55,7 @@ export default {
   },
   async logout({ commit, dispatch }, needsRedirect){
     try {
-      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/account/logout`, {}, { withCredentials: true });
+      let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/logout`, {}, { withCredentials: true });
       commit("SET_USER", null);
       if (needsRedirect){ this.$router.push("/") }
     }

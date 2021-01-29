@@ -15,23 +15,13 @@ import MainToolbar from "~/components/header/MainToolbar.vue";
 import NotificationsWrapper from "~/components/notification/NotificationsWrapper.vue";
 import SiteFooter from "~/components/footer/Footer.vue";
 
-import { mapActions, mapGetters } from "vuex";
-
 export default {
   components: {
     MainToolbar,
     NotificationsWrapper,
     SiteFooter
   },
-  methods: {
-    ...mapActions([
-      "checkAuthState",
-    ])
-  },
-  mounted(){
-    this.checkAuthState();
-  }
-
+  middleware: "checkAuthState"
 };
 </script>
 
@@ -147,6 +137,10 @@ export default {
     color: var(--link);
     opacity: 0.5;
     cursor: pointer;
+  }
+
+  .nohover:hover {
+    opacity: 1 !important;
   }
 
   h1 {

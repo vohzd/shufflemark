@@ -14,16 +14,16 @@ export default {
     AUTH_SERVER_ENDPOINT: process.env.AUTH_SERVER_ENDPOINT || "https://localhost:1080",
   },
   head: {
-    title: "chantry",
+    title: "snagmark",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "chantry" },
-      { hid: "identifier-url", name: "identifier-url", content: "https://chantry.io" },
-      { hid: "title", name: "title", content: "chantry" },
-      { hid: "abstract", name: "abstract", content: "chantry" },
-      { hid: "description", name: "description", content: "chantry" },
-      { hid: "keywords", name: "keywords", content: "chantry, vohzd, " },
+      { hid: "description", name: "description", content: "snagmark" },
+      { hid: "identifier-url", name: "identifier-url", content: "https://snagmark.io" },
+      { hid: "title", name: "title", content: "snagmark" },
+      { hid: "abstract", name: "abstract", content: "snagmark" },
+      { hid: "description", name: "description", content: "snagmark" },
+      { hid: "keywords", name: "keywords", content: "snagmark, vohzd, " },
       { hid: "author", name: "author", content: "vohzd" },
       { hid: "language", name: "language", content: "EN" },
       { hid: "robots", name: "robots", content: "All" },
@@ -42,7 +42,7 @@ export default {
     "~/plugins/fontawesome.js"
   ],
   sitemap: {
-    hostname: "https://chantry.io",
+    hostname: "https://snagmark.io",
     gzip: true
   },
   serverMiddleware: [

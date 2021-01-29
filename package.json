@@ -1,5 +1,5 @@
 {
-  "name": "chantry",
+  "name": "snagmark",
   "version": "0.0.4",
   "scripts": {
     "dev": "cross-env IS_DEV=TRUE PORT=1440 NODE_TLS_REJECT_UNAUTHORIZED=0 AUTH_SERVER_ENDPOINT=https://localhost:1080 nuxt",
@@ -9,24 +9,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chantry/website.git"
+    "url": "git+https://github.com/snagmark/website.git"
   },
-  "homepage": "https://github.com/chantry/website#readme",
+  "homepage": "https://github.com/snagmark/website#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-regular-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@nuxtjs/axios": "^5.12.4",
-    "@nuxtjs/pwa": "^3.3.3",
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "filenamify": "^4.2.0",
-    "mongoose": "^5.11.9",
+    "mongoose": "^5.11.14",
     "nuxt": "^2.14.12",
     "puppeteer": "^5.5.0"
   },
