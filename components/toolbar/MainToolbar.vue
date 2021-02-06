@@ -1,19 +1,20 @@
 <template lang="html">
   <header class="main-toolbar">
     <nuxt-link to="/" class="nohover"><site-logo></site-logo></nuxt-link>
+    <!--
     <div class="main-ctas pad">
       <nuxt-link to="/surf" class="row ">
         <button >SURF!</button>
       </nuxt-link>
-    </div>
+    </div>-->
     <account-icon class="absolute-top-right"></account-icon>
   </header>
 </template>
 
 <script>
 
-import AccountIcon from "~/components/header/AccountIcon.vue";
-import SiteLogo from "~/components/header/SiteLogo.vue";
+import AccountIcon from "~/components/toolbar/AccountIcon.vue";
+import SiteLogo from "~/components/toolbar/SiteLogo.vue";
 
 export default {
   components: {

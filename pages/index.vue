@@ -11,7 +11,7 @@
 
           <div v-for="site in websites" class="bookmarks-grid">
             <div v-if="site" class="flex-grid bookmark-item mb">
-              <img :src="`/screenshots/${site.screenshotFilename}`" width="256px" >
+              <img :src="`/websites/screenshots/${site.screenshotFilename}`" width="256px" >
               <h5><a :href="site.url">{{ site.url }}</a></h5>
             </div>
         </div>

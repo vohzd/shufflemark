@@ -6,12 +6,17 @@ const rootDir                                = path.resolve();
 
 
 async function addWebsite(url){
-  console.log("adding!");
+  console.log("service: addWebsite");
+  console.log(url);
+
+
+  //const
+  /*
   const screenshotFilename = `${filenamify(url.replace(/(^\w+:|^)\/\//, ""))}.png`;
-  let website = new WebsiteModel({ url });
+  let website = new WebsiteModel({ url, screenshotFilename });
   await website.save();
   getWebsiteScreenshot(url, screenshotFilename);
-  updateWebsite(website._id, { screenshotFilename } );
+  updateWebsite(website._id, { screenshotFilename } );*/
   return true;
 }
 
@@ -27,23 +32,23 @@ async function getWebsites(query){
 }
 
 async function getWebsiteScreenshot(url, screenshotFilename){
-  console.log("********************");
-  console.log("LAUNCHING PUPPETEER");
-  console.log(`received url: ${ url }`);
+  console.log("service: getWebsiteScreenshot")
 
+  /*
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url);
+*/
+  console.log(`saving to: ${screenshotFilename}`);
 
-  console.log(`using filename: ${screenshotFilename}`);
-
-  const screenshotPath = `${rootDir}/static/screenshots/${screenshotFilename}`;
+  /*
+  const path = `${rootDir}/static/websites/screenshots/${screenshotFilename}`;
   console.log(`screenshot path is: ${ screenshotPath }`);
 
-  await page.screenshot({ path: screenshotPath });
+  await page.screenshot({ path });
   await page.close();
   await browser.close();
-
+*/
   return true;
 
 }

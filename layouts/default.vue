@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MainToolbar from "~/components/header/MainToolbar.vue";
+import MainToolbar from "~/components/toolbar/MainToolbar.vue";
 import NotificationsWrapper from "~/components/notification/NotificationsWrapper.vue";
 import SiteFooter from "~/components/footer/Footer.vue";
 

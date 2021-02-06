@@ -1,22 +1,20 @@
 <template lang="html">
   <div class="center-container ptx ">
-    <div class="row pad">
+    <div class="row ">
       <h1>Welcome</h1>
     </div>
-    <div class="row mt mb">
-      <nuxt-link to="/websites/add">
-        <button class="secondary-button">Add a website manually</button>
-      </nuxt-link>
-      <nuxt-link to="/websites/upload">
-        <button class="secondary-button">Upload a shitton from a file</button>
-      </nuxt-link>
+    <div class="row mt mb flex-wrapper">
+      <nuxt-link to="/websites">Manage Websites</nuxt-link>
     </div>
-    <div class="row mt mb pad">
+
+
+    <div class="row mtx">
       <button class="secondary-button" @click="handleLogout">Log Out</button>
+      <div class="row mt dashed-bg">
+        <button class="secondary-button" @click="handleDeleteAccount">Delete Account?</button>
+      </div>
     </div>
-    <div class="row mt dashed-bg pad">
-      <button class="secondary-button" @click="handleDeleteAccount">Delete Account?</button>
-    </div>
+
   </div>
 </template>
 
