@@ -3,9 +3,7 @@ import state 												from "./state.js";
 export default {
   async checkAuthState({ commit, dispatch }){
     try {
-      console.log("action: checkAuthState");
       let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/check-cookie`, {}, { withCredentials: true });
-      console.log(data);
       commit("SET_USER", data);
     }
     catch (e){

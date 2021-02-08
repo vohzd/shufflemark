@@ -19,7 +19,9 @@ const {
 router.get("/websites", async (req, res, next) => {
   let query = req.query ? req.query : {};
   try {
+    console.log("route GET /websites");
     const websites = await getWebsites(query);
+    console.log(websites);
     return res.send(websites);
   }
   catch (e){ return errorHandler(res, e); }

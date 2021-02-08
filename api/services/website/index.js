@@ -28,6 +28,7 @@ async function deleteWebsite(id){
 }
 
 async function getWebsites(query){
+  console.log("service: getWebsites");
   return await WebsiteModel.find(query);
 }
 
