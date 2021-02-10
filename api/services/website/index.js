@@ -5,19 +5,38 @@ const path                                   = require("path");
 const rootDir                                = path.resolve();
 
 
+const {
+  getHTML
+}                                            = require("../puppeteer/index.js");
+
+/* unneedec ?
+async function archiveWebsite(url){
+  // uses a combo of puppeteer & wget
+  console.log("service: archiveWebsite");
+  console.log(url);
+
+  const html = await getHTML(url);
+
+  // save to disk
+  console.log("DONE");
+  console.log(html);
+
+}
+*/
+
+
 async function addWebsite(url){
   console.log("service: addWebsite");
   console.log(url);
+  return await website.save();
 
 
   //const
   /*
   const screenshotFilename = `${filenamify(url.replace(/(^\w+:|^)\/\//, ""))}.png`;
   let website = new WebsiteModel({ url, screenshotFilename });
-  await website.save();
   getWebsiteScreenshot(url, screenshotFilename);
   updateWebsite(website._id, { screenshotFilename } );*/
-  return true;
 }
 
 async function deleteWebsite(id){

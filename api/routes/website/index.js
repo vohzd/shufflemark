@@ -9,6 +9,12 @@ const {
 }                                         = require("../../services/website/index.js");
 
 const {
+  getHTML,
+}                                         = require("../../services/puppeteer/index.js");
+
+
+const {
+  createFile,
   createFolders
 }                                         = require("../../helpers/filesystem.js");
 
@@ -30,38 +36,32 @@ router.get("/websites", async (req, res, next) => {
 router.post("/website", async (req, res) => {
   console.log("route: POST /website");
 
-  // e.g https://github.com/vohzd/somerpo
-  const fullURL = req.body.url;
-
-  // github.com/vohzd/somerepo
-  const folders = removeProtocol(fullURL);
-
-
-
-  // make a nested directory structure on disk
-
-
-
-  console.log(fullURL);
-  console.log(noProtocol);
-  console.log(folders);
-
   try {
 
-    /*
+    // e.g https://github.com/vohzd/somerpo
+    const fullURL = req.body.url;
+
+    // github.com/vohzd/somerepo
+    const path = removeProtocol(fullURL);
+
+    // static/websites/github.com/vohzd/somerepo/index.html
+    const finalPath = `/static/websites/${path}/index.html`;
+
+    // get puppeteer to download the file
+    const html =  await getHTML(fullURL);
+
+    // write it to disk
+    await createFile(finalPath, html);
+
     const exists = await getWebsites({
-      url: req.body.url
+      url: finalPath
     });
 
     console.log(exists);
 
-    if (!exists){
-      await addWebsite(req.body.url);
-    }*/
+    if (!exists) await addWebsite(finalPath);
 
-    return res.json({
-      message: "yes"
-    });
+    return res.json(finalPath);
   }
   catch (e){ return errorHandler(res, e); }
 });

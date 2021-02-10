@@ -1,0 +1,276 @@
+<!DOCTYPE html><html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fs-extra</title>
+    
+    <link type="text/css" rel="stylesheet" href="http://adilapapaya.com/assets/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="http://adilapapaya.com/assets/css/bootstrap-sidebar-nav-nav-list.css">
+    <link type="text/css" rel="stylesheet" href="http://adilapapaya.com/assets/css/github.css">
+
+    <!-- My additional styles global styles class -->
+    <link type="text/css" rel="stylesheet" href="http://adilapapaya.com/assets/css/papaya-style.css">
+  
+    <!-- These come BEFORE body or the sidebar will load wonky -->
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="http://adilapapaya.com/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://adilapapaya.com/assets/js/bootstrap.min.js"></script>
+
+  </head>
+<body>
+
+<div id="wrapper">
+  <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div class="nav nav-list">
+          <div class="sidebar-brand">
+             Table of Contents
+          </div>
+        </div>
+        <ul class="nav nav-list">
+<li class="level-1" data-original-title="" title=""><a href="#nodejsfsextra">Node.js fs-extra</a></li>
+<hr class="level-1">
+<li class="level-2" data-original-title="" title=""><a href="#why">Why?</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#installation">Installation</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#usage">Usage</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#methods">Methods</a></li>
+<hr class="level-2">
+<li class="level-3" data-original-title="" title=""><a href="#copysrcdestfiltercallback">copy(src, dest, [filter], callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#createfilefilecallback">createFile(file, callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#mkdirsdircallback">mkdirs(dir, callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#outputfilefiledatacallback">outputFile(file, data, callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#outputjsonfiledatacallback">outputJson(file, data, callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#readjsonfileoptionscallback">readJson(file, [options], callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#removedircallback">remove(dir, callback)</a></li>
+<hr class="level-3">
+<li class="level-3" data-original-title="" title=""><a href="#writejsonfileobjectoptionscallback">writeJson(file, object, [options], callback)</a></li>
+<hr class="level-3">
+<li class="level-2" data-original-title="" title=""><a href="#roadmapto100">Roadmap to 1.0.0</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#naming">Naming</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#credit">Credit</a></li>
+<hr class="level-2">
+<li class="level-2" data-original-title="" title=""><a href="#contributions">Contributions</a></li>
+<hr class="level-2">
+<li class="level-3" data-original-title="" title=""><a href="#contributors">Contributors</a></li>
+<hr class="level-3">
+<li class="level-2" data-original-title="" title=""><a href="#license">License</a></li>
+<hr class="level-2"></ul>
+    </div>
+
+    <div id="page-content-wrapper">
+      <div class="page-content inset">
+        <a name="nodejsfsextra"></a><a class="anchorlink" href="#nodejsfsextra"></a><h1>Node.js: fs-extra</h1>
+<p><a href="http://travis-ci.org/jprichardson/node-fs-extra"><img src="https://secure.travis-ci.org/jprichardson/node-fs-extra.png" alt="build status"></a></p>
+<p>This module adds a few extra file system methods that aren't included in the native <code>fs</code> module. It is a drop in replacement for <code>fs</code>.</p>
+<a name="why"></a><a class="anchorlink" href="#why"></a><h2>Why?</h2>
+<p>I got tired of including <code>mkdirp</code>, <code>rimraf</code>, and <code>cp -r</code> in most of my projects. </p>
+<a name="installation"></a><a class="anchorlink" href="#installation"></a><h2>Installation</h2>
+<pre class="hljs"><code><span class="hljs-comment">npm</span> <span class="hljs-comment">install</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">save</span> <span class="hljs-comment">fs</span><span class="hljs-literal">-</span><span class="hljs-comment">extra</span></code></pre><a name="usage"></a><a class="anchorlink" href="#usage"></a><h2>Usage</h2>
+<p><code>fs-extra</code> is a drop in replacement for native <code>fs</code>. All methods in <code>fs</code> are unmodified and attached to <code>fs-extra</code>.</p>
+<p>You don't ever need to include the original <code>fs</code> module again:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>) <span class="hljs-comment">//this is no longer necessary</span></code></pre><p>you can now do this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>); <span class="hljs-comment">//var fs = require('fs')</span></code></pre><p>or if you prefer to make it clear that you're using <code>fs-extra</code> and not <code>fs</code>, you may want 
+to do this:</p>
+<pre class="hljs"><code><span class="hljs-comment">//var fs = require('fs')</span>
+<span class="hljs-keyword">var</span> fse = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)</code></pre><p>you can also keep, both, but it's redundant:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+  , fse = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)</code></pre><a name="methods"></a><a class="anchorlink" href="#methods"></a><h2>Methods</h2>
+<p><strong>NOTE:</strong> You can still use the native Node.js methods. They are copied over to <code>fs-extra</code>.</p>
+<a name="copysrcdestfiltercallback"></a><a class="anchorlink" href="#copysrcdestfiltercallback"></a><h3>copy(src, dest, [filter], callback)</h3>
+<p>Copy a file or directory. The directory can have contents. Like <code>cp -r</code>. There isn't a synchronous version implemented yet.</p>
+<p>Sync: <code>copySync()</code></p>
+<p>Examples:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>);
+
+fs.copy(<span class="hljs-string">'/tmp/myfile'</span>, <span class="hljs-string">'/tmp/mynewfile'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span>{</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.error(err);
+
+  console.log(<span class="hljs-string">"success!"</span>)
+}); <span class="hljs-comment">//copies file</span>
+
+fs.copy(<span class="hljs-string">'/tmp/mydir'</span>, <span class="hljs-string">'/tmp/mynewdir'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span>{</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.error(err);
+
+  console.log(<span class="hljs-string">"success!"</span>)
+}); <span class="hljs-comment">//copies directory, even if it has subdirectories or files</span></code></pre><a name="createfilefilecallback"></a><a class="anchorlink" href="#createfilefilecallback"></a><h3>createFile(file, callback)</h3>
+<p>Creates a file. If the file that is requested to be created is in directories that do not exist, these directories are created. If the file already exists, it is <strong>NOT MODIFIED</strong>.</p>
+<p>Sync: <code>createFileSync()</code></p>
+<p>Example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)
+
+<span class="hljs-keyword">var</span> file = <span class="hljs-string">'/tmp/this/path/does/not/exist/file.txt'</span>
+
+fs.createFile(file, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span> {</span>
+  console.log(err); <span class="hljs-comment">//null</span>
+  <span class="hljs-comment">//file has now been created, including the directory it is to be placed in</span>
+})</code></pre><a name="mkdirsdircallback"></a><a class="anchorlink" href="#mkdirsdircallback"></a><h3>mkdirs(dir, callback)</h3>
+<p>Creates a directory. If the parent hierarchy doesn't exist, it's created. Like <code>mkdir -p</code>.</p>
+<p>Alias: <code>mkdirp()</code></p>
+<p>Sync: <code>mkdirsSync()</code> / <code>mkdirpSync()</code></p>
+<p>Examples:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>);
+
+fs.mkdirs(<span class="hljs-string">'/tmp/some/long/path/that/prob/doesnt/exist'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span>{</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.error(err);
+
+  console.log(<span class="hljs-string">"success!"</span>)
+});
+
+fs.mkdirsSync(<span class="hljs-string">'/tmp/another/path'</span>);</code></pre><a name="outputfilefiledatacallback"></a><a class="anchorlink" href="#outputfilefiledatacallback"></a><h3>outputFile(file, data, callback)</h3>
+<p>Almost the same as <code>writeFile</code>, except that if the directory does not exist, it's created.</p>
+<p>Sync: <code>outputFileSync()</code></p>
+<p>Example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)
+<span class="hljs-keyword">var</span> file = <span class="hljs-string">'/tmp/this/path/does/not/exist/file.txt'</span>
+
+fs.outputFile(file, <span class="hljs-string">'hello!'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span> {</span>
+  console.log(err); <span class="hljs-comment">//null</span>
+
+  fs.readFile(file, <span class="hljs-string">'utf8'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span> {</span>
+    console.log(data); <span class="hljs-comment">//hello!</span>
+  })
+})</code></pre><a name="outputjsonfiledatacallback"></a><a class="anchorlink" href="#outputjsonfiledatacallback"></a><h3>outputJson(file, data, callback)</h3>
+<p>Almost the same as <code>writeJson</code>, except that if the directory does not exist, it's created.</p>
+<p>Alias: `outputJSON()</p>
+<p>Sync: <code>outputJsonSync()</code>, <code>outputJSONSync()</code></p>
+<p>Example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)
+<span class="hljs-keyword">var</span> file = <span class="hljs-string">'/tmp/this/path/does/not/exist/file.txt'</span>
+
+fs.outputJson(file, {name: <span class="hljs-string">'JP'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span> {</span>
+  console.log(err); <span class="hljs-comment">//null</span>
+
+  fs.readJson(file, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span> {</span>
+    console.log(data.name); <span class="hljs-comment">//'JP</span>
+  })
+})</code></pre><a name="readjsonfileoptionscallback"></a><a class="anchorlink" href="#readjsonfileoptionscallback"></a><h3>readJson(file, [options], callback)</h3>
+<p>Reads a JSON file and then parses it into an object. <code>options</code> are the same that you'd pass to <code>fs.readFile</code>.</p>
+<p>Alias: <code>readJSON()</code></p>
+<p>Sync: <code>readJsonSync()</code>, <code>readJSONSync()</code></p>
+<p>Example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>);
+
+fs.readJson(<span class="hljs-string">'./package.json'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, packageObj)</span> {</span>
+  console.log(packageObj.version); <span class="hljs-comment">//0.1.3</span>
+});</code></pre><a name="removedircallback"></a><a class="anchorlink" href="#removedircallback"></a><h3>remove(dir, callback)</h3>
+<p>Removes a file or directory. The directory can have contents. Like <code>rm -rf</code>.</p>
+<p>Alias: <code>delete()</code></p>
+<p>Sync: <code>removeSync()</code> / <code>deleteSync()</code></p>
+<p>Examples:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>);
+
+fs.remove(<span class="hljs-string">'/tmp/myfile'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span>{</span>
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.error(err);
+
+  console.log(<span class="hljs-string">"success!"</span>)
+});
+
+fs.removeSync(<span class="hljs-string">'/home/jprichardson'</span>); <span class="hljs-comment">//I just deleted my entire HOME directory.</span></code></pre><a name="writejsonfileobjectoptionscallback"></a><a class="anchorlink" href="#writejsonfileobjectoptionscallback"></a><h3>writeJson(file, object, [options], callback)</h3>
+<p>Writes an object to a JSON file. <code>options</code> are the same that you'd pass to <code>fs.readFile</code>.</p>
+<p>Alias: <code>writeJSON()</code></p>
+<p>Sync: <code>writeJsonSync()</code>, <code>writeJSONSync()</code></p>
+<p>Example:</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>);
+fs.writeJson(<span class="hljs-string">'./package.json'</span>, {name: <span class="hljs-string">'fs-extra'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span>{</span>
+  console.log(err);
+});</code></pre><a name="roadmapto100"></a><a class="anchorlink" href="#roadmapto100"></a><h2>Roadmap to 1.0.0</h2>
+<p>This contains items that I'm considering doing. I'd love community feedback.</p>
+<ul class="list">
+<li>File system walker. I really like this one: <a href="https://github.com/daaku/nodejs-walker">https://github.com/daaku/nodejs-walker</a> ... this might be adding too much. Thoughts?</li>
+<li>File/directory tree watcher. There are quite a few. ... this also might be adding too much. I like this one: <a href="https://github.com/paulmillr/chokidar">https://github.com/paulmillr/chokidar</a> but I don't like that it's written in CoffeeScript. Thoughts?</li>
+<li>Method to move files.</li>
+<li>Thinking about moving <code>rimraf</code>, <code>ncp</code>, and <code>mkdirps</code> code into this library. I'd like fs-extra to be a stable library that module authors
+can depend upon. A bunch of other dependencies kinda sucks for modules/libraries. (I'm leaning against this now.)</li>
+<li>Change documentation to use the <code>fse</code> prefix instead of <code>fs</code>. This may encourage people to start using <code>fse</code> as a prefix and hence make their code clearer that they're not using the native <code>fs</code>. I'm very undecided on this one since <code>fs-extra</code> is a drop in replacement for the native <code>fs</code>. (I'm leaning against this now.)</li>
+</ul>
+<a name="naming"></a><a class="anchorlink" href="#naming"></a><h2>Naming</h2>
+<p>I put a lot of thought into the naming of these functions. Inspired by @coolaj86's request. So he deserves much of the credit for raising the issue. See discussion(s) here:</p>
+<ul class="list">
+<li><a href="https://github.com/jprichardson/node-fs-extra/issues/2">https://github.com/jprichardson/node-fs-extra/issues/2</a></li>
+<li><a href="https://github.com/flatiron/utile/issues/11">https://github.com/flatiron/utile/issues/11</a></li>
+<li><a href="https://github.com/ryanmcgrath/wrench-js/issues/29">https://github.com/ryanmcgrath/wrench-js/issues/29</a></li>
+<li><a href="https://github.com/substack/node-mkdirp/issues/17">https://github.com/substack/node-mkdirp/issues/17</a></li>
+</ul>
+<p>First, I believe that in as many cases as possible, the <a href="http://nodejs.org/api/fs.html">Node.js naming schemes</a> should be chosen. However, there are problems with the Node.js own naming schemes.</p>
+<p>For example, <code>fs.readFile()</code> and <code>fs.readdir()</code>: the <strong>F</strong> is capitalized in <em>File</em> and the <strong>d</strong> is not capitalized in <em>dir</em>. Perhaps a bit pedantic, but they should still be consistent. Also, Node.js has chosen a lot of POSIX naming schemes, which I believe is great. See: <code>fs.mkdir()</code>, <code>fs.rmdir()</code>, <code>fs.chown()</code>, etc.</p>
+<p>We have a dilemma though. How do you consistently name methods that perform the following POSIX commands: <code>cp</code>, <code>cp -r</code>, <code>mkdir -p</code>, and <code>rm -rf</code>?</p>
+<p>My perspective: when in doubt, err on the side of simplicity. A directory is just a hierarchical grouping of directories and files. Consider that for a moment. So when you want to copy it or remove it, in most cases you'll want to copy or remove all of its contents. When you want to create a directory, if the directory that it's suppose to be contained in does not exist, then in most cases you'll want to create that too. </p>
+<p>So, if you want to remove a file or a directory regardless of whether it has contents, just call <code>fs.remove(path)</code> or its alias <code>fs.delete(path)</code>. If you want to copy a file or a directory whether it has contents, just call <code>fs.copy(source, destination)</code>. If you want to create a directory regardless of whether its parent directories exist, just call <code>fs.mkdirs(path)</code> or <code>fs.mkdirp(path)</code>. </p>
+<a name="credit"></a><a class="anchorlink" href="#credit"></a><h2>Credit</h2>
+<p><code>fs-extra</code> wouldn't be possible without using the modules from the following authors:</p>
+<ul class="list">
+<li><a href="https://github.com/isaacs">Isaac Shlueter</a></li>
+<li><a href="https://github.com/avianflu">Charlie McConnel</a></li>
+<li><a href="https://github.com/substack">James Halliday</a></li>
+</ul>
+<a name="contributions"></a><a class="anchorlink" href="#contributions"></a><h2>Contributions</h2>
+<p>If you want to contribute, please add a test if you can. Also, don't change the version in <code>package.json</code>.</p>
+<a name="contributors"></a><a class="anchorlink" href="#contributors"></a><h3>Contributors</h3>
+<ul class="list">
+<li><a href="https://github.com/jprichardson">JP Richardson</a></li>
+<li><a href="https://github.com/mikermcneil">Mike McNeil</a></li>
+<li><a href="https://github.com/iancrowther">Ian Crowther</a></li>
+<li><a href="https://github.com/stephenmathieson">Stephen Mathieson</a></li>
+<li><a href="https://github.com/Srirangan">Srirangan</a></li>
+<li><a href="https://github.com/ulikoehler">Uli Köhler</a></li>
+<li><code>&lt;your name here&gt;</code></li>
+</ul>
+<a name="license"></a><a class="anchorlink" href="#license"></a><h2>License</h2>
+<p>Licensed under MIT</p>
+<p>Copyright (c) 2011-2013 JP Richardson</p>
+
+       
+        <hr>
+        <footer class="text-center">
+        <span id="copy">
+          Go To: <a href="http://adilapapaya.com">adilapapaya.com</a>
+          / 
+          <a href="http://adilapapaya.com/docs">readme docs main page</a>   
+        </span>
+        <h6><small id="email" class="text-center"><svg width="260" height="30"><g class="blocks"><g class="block" transform="translate(0,-99.45354948)rotate(8.964668766538331)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(15,-100)rotate(-6.199027958039649)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">D</text></g><g class="block" transform="translate(30,-100)rotate(2.0315293050675343)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">I</text></g><g class="block" transform="translate(45,-100)rotate(-9.496022880363197)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">L</text></g><g class="block" transform="translate(60,-100)rotate(0.21560640358828875)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(75,-100)rotate(-2.0405373099762847)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">P</text></g><g class="block" transform="translate(90,-100)rotate(3.638880758662568)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(105,-100)rotate(-9.140072469150251)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">P</text></g><g class="block" transform="translate(120,-100)rotate(9.173146924274334)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(135,-100)rotate(-6.402465853869992)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">Y</text></g><g class="block" transform="translate(150,-100)rotate(4.053867081917777)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(165,-100)rotate(-1.014975150383226)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">@</text></g><g class="block" transform="translate(180,-100)rotate(8.124198549309199)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">G</text></g><g class="block" transform="translate(195,-100)rotate(-1.3386666228413446)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">M</text></g><g class="block" transform="translate(210,-100)rotate(8.651736009703102)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">A</text></g><g class="block" transform="translate(225,-100)rotate(-9.208260870112499)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">I</text></g><g class="block" transform="translate(240,-100)rotate(7.4925262156529016)"><rect width="16" height="16" style="fill: rgb(0, 0, 0);"></rect><text x="8" y="8" dy=".3em" style="text-anchor: middle; fill: rgb(255, 255, 255);">L</text></g></g></svg></small></h6><h6></h6><h6><span id="friends" style="color: rgb(255, 255, 255);">Let's be friends, yes?</span></h6><h6></h6></footer>
+
+      </div>
+       
+    </div>
+</div>
+
+<!-- sidebar-popover js code -->
+<script type="text/javascript" src="http://adilapapaya.com/assets/js/sidebar-popover.js"></script> 
+
+<!-- Set the page title equal to the library name  -->
+<script type="text/javascript">
+  var title = window.location.pathname.split('/');
+  
+  var page = title[title.length-1];
+  if(page && page.length){
+     var tokens = page.replace('.html','').split('_')
+     page = title[title.length-2] + ' version '+tokens[tokens.length-1];
+  }
+  else page = title[title.length-2];
+   
+  document.title = page;
+</script>
+
+<script type="text/javascript" src="http://adilapapaya.com/assets/js/d3.min.js"></script>
+<script type="text/javascript" src="http://adilapapaya.com/assets/js/bounce.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-29036360-2', 'adilapapaya.com');
+  ga('send', 'pageview');
+</script>
+
+
+</body></html>
