@@ -8,10 +8,13 @@ export default {
     commit("SET_NOTIFICATION_TEXT", text);
   },
   setNotification({ commit, dispatch }, text){
+
+    console.log(arguments);
+    throw new Error
     dispatch("setNotificationText", text);
     dispatch("setIsNotificationShown", true);
     setTimeout(() => {
-      //dispatch("setNotificationText", null);
+      dispatch("setNotificationText", null);
       dispatch("setIsNotificationShown", false);
     }, 3000);
   }

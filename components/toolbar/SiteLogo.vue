@@ -19,6 +19,7 @@
     z-index: 2;
     position: relative;
     padding: 16px;
+    width: 154px;
   }
 
   .main-logo img {

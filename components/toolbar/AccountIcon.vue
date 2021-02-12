@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="account-icon relative large-icon mr hover">
-    <nuxt-link to="/account" class="no-colour"><font-awesome-icon icon="user-circle"></font-awesome-icon ></nuxt-link>
+    <nuxt-link to="/account" class="no-colour"><font-awesome-icon icon="user-circle" ></font-awesome-icon ></nuxt-link>
     <div class="login-status" :class="{ 'login-status--green': user  }"></div>
   </div>
 </template>
@@ -26,7 +26,7 @@ import { mapGetters } from "vuex";
 
   .account-icon svg {
     color: white;
-
+    width:100%;
   }
 
   .login-status {

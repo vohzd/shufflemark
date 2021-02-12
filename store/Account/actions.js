@@ -7,7 +7,9 @@ export default {
       commit("SET_USER", data);
     }
     catch (e){
-      dispatch("setNotification", e.response.data.reason);
+      console.log("YOU ARE HERE");
+      console.log(e);
+      //dispatch("setNotification", e.response.data.reason);
     }
   },
   async checkAccountExists({ commit, dispatch }, email){
