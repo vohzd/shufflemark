@@ -33,38 +33,6 @@ router.get("/websites", async (req, res, next) => {
   catch (e){ return errorHandler(res, e); }
 });
 
-router.post("/website", async (req, res) => {
-  console.log("route: POST /website");
-
-  try {
-
-    // e.g https://github.com/vohzd/somerpo
-    const fullURL = req.body.url;
-
-    // github.com/vohzd/somerepo
-    const path = removeProtocol(fullURL);
-
-    // static/websites/github.com/vohzd/somerepo/index.html
-    const finalPath = `/static/websites/${path}/index.html`;
-
-    // get puppeteer to download the file
-    const html =  await getHTML(fullURL);
-
-    // write it to disk
-    await createFile(finalPath, html);
-
-    const exists = await getWebsites({
-      url: finalPath
-    });
-
-    console.log(exists);
-
-    if (!exists) await addWebsite(finalPath);
-
-    return res.json(finalPath);
-  }
-  catch (e){ return errorHandler(res, e); }
-});
 
 router.delete("/website/:id", async (req, res) => {
   console.log("route: DELETE /website/:id");

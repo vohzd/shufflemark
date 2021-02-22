@@ -9,9 +9,9 @@
 
 
       <div class="row mtx">
-        <h4>Moar</h4>
-        <nuxt-link to="/websites/add">Add a website manually</nuxt-link>
-        <nuxt-link to="/websites/upload">Upload a shitton from a file</nuxt-link>
+        <h4 class="mb">Moar</h4>
+        <nuxt-link to="/websites/add" ><button>Add a website manually</button></nuxt-link>
+        <nuxt-link to="/websites/import" ><button>Import Multiple</button></nuxt-link>
       </div>
 
 

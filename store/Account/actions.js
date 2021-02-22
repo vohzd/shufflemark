@@ -12,6 +12,25 @@ export default {
       //dispatch("setNotification", e.response.data.reason);
     }
   },
+  async checkToken({ commit, dispatch }, token){
+    try {
+      // takes a token (parsed cookie) in the body of the request
+      console.log("action: checkToken");
+      console.log(token);
+      let payload = null;
+      let user = null
+      if (token){
+        console.log("we have a token, performing request");
+        payload = token.split("epitradeMultipass=")[1];
+        let { data } = await this.$axios.post(`${this.getters.authServerEndpoint}/api/account/check-token`, { token: payload });
+        user = data;
+      }
+      commit("SET_USER", user);
+    }
+    catch (e){
+      dispatch("setNotification", e.response.data.reason);
+    }
+  },
   async checkAccountExists({ commit, dispatch }, email){
     try {
       return await this.$axios.get(`${this.getters.authServerEndpoint}/api/account?email=${email}&property=epitrade`);

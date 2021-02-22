@@ -4,7 +4,7 @@
     <div class="main-wrapper">
       <nuxt />
       <notifications-wrapper></notifications-wrapper>
-      <site-footer></site-footer>
+      <!--<site-footer></site-footer>-->
     </div>
 
   </section>
@@ -20,8 +20,7 @@ export default {
     MainToolbar,
     NotificationsWrapper,
     SiteFooter
-  },
-  middleware: "checkAuthState"
+  }
 };
 </script>
 
@@ -189,6 +188,7 @@ export default {
     width: 60%;
     margin: auto;
     position: relative;
+    word-wrap: anywhere;
   }
 
   .admin-toolbar, .secondary-toolbar {
@@ -277,6 +277,13 @@ export default {
     font-size: 12px;
     padding: 4px;
     margin: 0px;
+  }
+
+  .disabled-button {
+    cursor: not-allowed;
+    color: rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.1);
+    opacity: 1;
   }
 
   .disabled-button label:hover {
